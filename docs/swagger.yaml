@@ -1,0 +1,67 @@
+definitions:
+  model.Req:
+    properties:
+      page:
+        type: integer
+      query:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /api/v1/coursera/fetchData:
+    get:
+      consumes:
+      - application/json
+      description: fetch data
+      parameters:
+      - description: query
+        in: query
+        name: query
+        required: true
+        type: string
+      - description: limit
+        in: query
+        name: limit
+        type: integer
+      - description: page
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+        "404":
+          description: Not Found
+      summary: Fetch data
+      tags:
+      - coursera service
+  /api/v1/coursera/saveData:
+    post:
+      consumes:
+      - application/json
+      description: save data from coursera
+      parameters:
+      - description: save data from coursera
+        in: body
+        name: call
+        required: true
+        schema:
+          $ref: '#/definitions/model.Req'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+        "404":
+          description: Not Found
+      summary: save data from coursera
+      tags:
+      - coursera service
+swagger: "2.0"
